@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>首页</title>
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/demo.css" />
+		
+		<script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+		
+		<script type="text/javascript" src="js/index.js" ></script>
+	
+		<script type="text/javascript" src="js/jquery.flexslider-min.js" ></script>
+        <link rel="stylesheet" href="css/flexslider.css" />
+        <!--插件轮播-->
+		<!--<script type="text/javascript">
+$(function() {
+    $(".flexslider").flexslider({
+		slideshowSpeed: 4000, //展示时间间隔ms
+		animationSpeed: 400, //滚动时间ms
+		touch: true //是否支持触屏滑动
+	});
+});	
+</script>-->
+		
+		
+		
+		
+	</head>
+	<body>
+		
+	<div id='rtt' style="color: red; background: palevioletred;"><a href="#2" style="color: greenyellow; font-size: 18px; line-height: 50px; margin-left: 8px;">▲</a></div>
+		<div class="wrapper"></div>
+		<div class="header">
+			
+			
+			
+		<!--插件  轮播图-->	
+	    <!--<div class="flexslider">
+  		<ul class="slides">
+    		<li><img src="img/1.png"/></li>
+    		
+    		<li style="margin: 0 auto;"><img style="width: 100%;height: 607px;" src="img/57.png"/></li>
+    		
+  		</ul>
+  	
+        </div>-->
+		<!--js轮播图-->
+		
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				text-decoration: none;
+			}
+			
+			body {
+				padding: 20px;
+			}
+			
+			#container {
+				width:100%;
+				height: 623px;
+				/*border: 1px solid #333;*/
+				overflow: hidden;
+				position: relative;
+			}
+			
+			#list {
+				width:9163px;
+				height: 623px;
+				position: absolute;
+				z-index: 1;
+			}
+			
+			#list img {
+				float: left;
+			}
+			
+			#buttons {
+				position: absolute;
+				height: 10px;
+				width: 100px;
+				z-index: 2;
+				bottom: 58px;
+				left: 690px;
+			}
+			
+			#buttons span {
+				cursor: pointer;
+				float: left;
+				border: 1px solid #F60CDA;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: #F60CDA;
+				margin-right: 5px;
+			}
+			
+			#buttons .on {
+				background: #03B1A6;
+			}
+			
+			.arrow {
+				cursor: pointer;
+				display: none;
+				line-height: 39px;
+				text-align: center;
+				font-size: 36px;
+				font-weight: bold;
+				width: 71px;
+				height: 48px;
+				position: absolute;
+				z-index: 2;
+				top: 256px;
+				background-color: RGBA(0, 0, 0, .3);
+				color: #fff;
+			}
+			
+			.arrow:hover {
+				background-color: RGBA(0, 0, 0, .7);
+			}
+			
+			#container:hover .arrow {
+				display: block;
+			}
+			
+			#prev {
+				left: 20px;
+			}
+			
+			#next {
+				right: 20px;
+			}
+		</style>
+		
+		
+		<div id="container">
+			<div id="list" style="left:-1309px;">
+				<img style="width: 1309px;" src="img/1.png" alt="1" />
+				<img style="width: 1309px; height: 550px;" src="img/57.png" alt="1" />
+				<img style="width: 1309px;" src="img/1.png" alt="1" />
+				<img style="width: 1309px; height: 550px;" src="img/57.png" alt="1" />
+				<img style="width: 1309px;" src="img/1.png" alt="1" />
+				<img style="width: 1309px; height: 550px; " src="img/57.png" alt="1" />
+				<img style="width: 1309px;" src="img/1.png" alt="1" />
+			</div>
+			<div id="buttons">
+				<span index="1" class="on"></span>
+				<span index="2"></span>
+				<span index="3"></span>
+				<span index="4"></span>
+				<span index="5"></span>
+			</div>
+			<a href="javascript:;" id="prev" class="arrow">&lt;</a>
+			<a href="javascript:;" id="next" class="arrow">&gt;</a>
+		</div>
+		
+		
+		<script>
+			window.onload = function() {
+				//定义变量
+				var con = document.getElementById("container");
+				var list = document.getElementById("list");
+				var btns = document.getElementById("buttons").getElementsByTagName("span");
+
+				var prev = document.getElementById("prev");
+				var next = document.getElementById("next");
+				var index = 1;
+                //图片偏移33
+				function animate(offset) {
+					var newLeft = parseInt(list.style.left) + offset
+
+					list.style.left = newLeft + 'px';
+					if(newLeft < -6545) {
+						list.style.left = -1309 + 'px';
+					}
+
+					if(newLeft > -1309) {
+						list.style.left = -6545 + 'px';
+					}
+				}
+    			//按钮事件
+				function showBtn() {
+					for(var i = 0; i < btns.length; i++) {
+						if(btns[i].className == "on") {
+							btns[i].className = "";
+						}
+					}
+					btns[index - 1].className = "on";
+				}
+				//下一张图
+				next.onclick = function() {
+					animate(-1309);
+					if(index == 5) {
+						index = 1;
+					} else {
+						index += 1
+					}
+					showBtn();
+				}
+				//上一张图
+				prev.onclick = function() {
+					animate(1309);
+					if(index == 1) {
+						index = 5;
+					} else {
+						index -= 1
+					}
+					showBtn();
+				}
+				//点击按钮更换图片
+				for(var a = 0; a < btns.length; a++) {
+					btns[a].onclick = function() {
+						var myIndex = parseInt(this.getAttribute("index"));
+						var offset = -1309 * (myIndex - index);
+						animate(offset)
+						index = myIndex;
+						showBtn();
+					}
+				}
+				//自动播放
+				function play(){
+					timeer=setInterval(function(){
+						next.onclick();
+					},3000)
+				}
+				//停止播放
+				function stop(){
+					clearInterval(timeer);
+				}
+				//鼠标离开自动播放
+				con.onmouseout=play;
+				
+				//鼠标放上停止播放
+				
+				con.onmouseover=stop;
+				
+				play();
+				
+				
+				
+				//底部轮播
+				var odiv = document.getElementById('div1');
+				var oul = odiv.getElementsByTagName('ul')[0];
+				var ali = oul.getElementsByTagName('li');
+				var spa = -2;				
+				oul.innerHTML=oul.innerHTML+oul.innerHTML;
+				oul.style.width=ali[0].offsetWidth*ali.length+'px';
+				function move(){
+					if(oul.offsetLeft<-oul.offsetWidth/2){
+						oul.style.left='0';
+					}
+					if(oul.offsetLeft>0){
+						oul.style.left=-oul.offsetWidth/2+'px'
+					}
+					oul.style.left=oul.offsetLeft+spa+'px';
+				}
+				var timer = setInterval(move,30)
+				
+				odiv.onmousemove=function(){clearInterval(timer);}
+				odiv.onmouseout=function(){timer = setInterval(move,30)};
+				document.getElementsByTagName('a')[0].onclick = function(){
+					spa=-2;
+				}
+				document.getElementsByTagName('a')[1].onclick = function(){
+					spa=2;
+				}
+				
+			}
+			
+			
+			
+			
+			
+		</script>
+		
+			<!--<div class="tupian">
+				<img src="img/1.png"/>
+			</div>-->
+			
+			<div class="denglu">
+			
+			<p>WELCOME  LOHO !&nbsp; &nbsp; &nbsp;</p>
+			<p style=" cursor:pointer" class="old"> <a href="login.html"> 登录  &nbsp; - &nbsp;</a></p>
+			<p style=" cursor:pointer" class="old1"><a href="zhuce.html">注册  &nbsp; &nbsp;</a></p>
+			<p>收藏LOHO &nbsp; &nbsp; &nbsp; </p>
+			<p>MY  LOHO  我的订单&nbsp; &nbsp; &nbsp;</p>
+			<p>购物车（0）&nbsp; &nbsp; &nbsp;</p>
+			<p>手机版     400-8871920(09:00-23:00)</p></div>  
+			     
+			<div class="bg"></div>
+			
+			
+			<ul id="nav" class="clearfix">
+				<li class="llll clearfix">
+					<a style="font-weight: bold;" href="#2">home</a>
+						
+						<ul style="display: none;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/36.png"/></li>
+							</ul>
+						</ul>
+				
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="about.html"> about  us</a>
+					<ul style="display: none;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/39.png"/></li>
+							</ul>
+						</ul>
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="new.html">new</a>
+					<ul style="display: none;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/40.png"/></li>
+							</ul>
+						</ul>
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="female.html">Female glasses</a>
+					<ul style="display: none;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/37.png"/></li>
+							</ul>
+						</ul>
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="man.html">Men's glasses</a>
+					<ul style="display: none;position:absolute;left: -742px;top: -400px;" class="lllll clearfix">
+					<!--<ul style="display: none;" class="lllll clearfix">
+-->							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/38.png"/></li>
+							</ul>
+						</ul>
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="sun.html">Sunglasses</a>
+					<ul style="display: none;position:absolute;left: -742px;top: -400px;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/39.png"/></li>
+							</ul>
+						</ul>
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="children.html">Children's glasses</a>
+					<ul style="display: none;position:absolute;left: -742px;top: -400px;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/40.png"/></li>
+							</ul>
+						</ul>
+				</li>
+				<li class="llll"><a style="font-weight: bold;" href="function.html">Brand glasses</a>
+					<!--<ul style="display: none;" class="lllll clearfix">-->
+						<ul style="display: none;position:absolute;left: -885px;top: -400px;" class="lllll clearfix">
+							<ul style="margin-top: 50px">
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+						<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul>
+							<li style="font-weight:bold;font-size: 16px;"><a href="#2">款式</a></li>
+							<li><a href="#2"> 复古款</a></li>
+							<li><a href="#2"> 经典款</a></li>
+							<li><a href="#2"> 商务款</a></li>
+							<li><a href="#2"> 时尚款</a></li>
+							<li><a href="#2"> 极客款</a></li>
+							</ul>
+							<ul style="position: relative; top:-210px;left: 487px;">
+								<li><img style="width: 200px;height: 280px;" src="img/41.png"/></li>
+							</ul>
+						</ul>
+				</li>
+			</ul>
+			
+			
+				
+			
+		</div>
+		
+		
+		<div class="xian1">
+			<img src="img/2.png" />
+		</div>
+		
+		
+		<div class="wrapper tu1 clearfix">
+			<div style="height: 400px; width: 400px;" class="left l clearfix">
+				<p class="p1">国际大牌-十足明星范</p>
+				<p class="p2">INTERNOTIONAL  ＢＩＧ　　NAME   </p>
+				<h2 style="color: black;" class="clearfix">style</h2>
+				<ul class="ul1 clearfix">
+					<li>板材太阳镜</li>
+					<li>金属太阳镜</li>
+				</ul>
+				<ul class="ul2">
+					<li>TR太阳镜</li>
+					<li>钛架太阳镜</li>
+				</ul>
+				<ul class="ul3">
+				<li><a href="#2">2016LOHO太阳镜，不惧骄阳  时尚出行</a></li>
+				<li><a href="#2">LOHO年轻时尚太阳镜</a></li>
+				<li><a href="#2">偏光太阳镜</a></li>
+				<li><a href="#2">VINTAGS时尚太阳镜系列VINTAGS时尚太阳镜系列</a></li>
+				<li><a href="#2">近视太阳镜，炎炎夏日</a></li>
+				<li><a href="#2">2016LOHO太阳镜，不惧骄阳  时尚出行</a></li>
+				<li><a href="#2">LOHO年轻时尚太阳镜</a></li>
+				<li><a href="#2">偏光太阳镜</a></li>
+				<li><a href="#2">VINTAGS时尚太阳镜系列VINTAGS时尚太阳镜系列</a></li>
+				<li><a href="#2">近视太阳镜，炎炎夏日</a></li>
+				<li><a href="#2">2016LOHO太阳镜，不惧骄阳  时尚出行</a></li>
+				<li><a href="#2">LOHO年轻时尚太阳镜</a></li>
+				<li><a href="#2">偏光太阳镜</a></li>
+				<li><a href="#2">VINTAGS时尚太阳镜系列VINTAGS时尚太阳镜系列</a></li>
+				<li><a href="#2">近视太阳镜，炎炎夏日</a></li>
+			</ul>
+			
+			</div>
+			<div class="right r">
+				<img src="img/3.png" />
+			</div>
+		</div>
+		
+		
+		
+		<div class="tu2 clearfix">
+			<img class="xian2 clearfix" src="img/11.png" />
+			<div style="position: relative;width: 100%; class="datuu">
+				<img style="position: relative;width: 100%;" src="img/26.png" />
+			</div>
+			<img class="gaobige" src="img/14.png" />
+			<div class="tushang">
+				
+				<div class="left">
+					<img src="img/25.png" />
+					<ul>
+						<li>LOHO眼镜生活是一家集设计、</li>
+					<li>生产、销售、服务为一体的眼镜商。</li>
+					<li>首创眼镜M2C直销模式。</li>
+					<li>通过提供高性价比配镜方案赢得顾客的青睐，</li>
+					<li>产品坚持三大核心理念，佩戴舒适，</li>
+					<li>款式潮流，定价公道，2011年进入内地市场，</li>
+					<li>目前已经在大陆地区多个城市拥有几十家眼镜店规模。</li>
+					</ul>
+					</ul>
+				</div>
+				
+				
+				
+				<div class="left" id="tab1">
+					<h2><a href="#2">太阳镜</a></h2>
+					<h2><a href="#2">近视镜</a></h2>
+					<h2><a href="#2">板材镜</a></h2>
+					
+				</div>
+				<div class="left" id="tab2">
+					<ul class="uu1">
+						<li>
+							
+							<ul class="pailie">
+						<li><a href="#2"><img src="img/21.png" /></a></li>
+						<li><a href="#2"><img src="img/21.png" /></a></li>
+						<li><a href="#2"><img src="img/23.png" /></a></li>
+					</ul>
+					<ul class="pailie">
+						<li><a href="#2"><img src="img/21.png" /></a></li>
+						<li><a href="#2"><img src="img/21.png" /></a></li>
+						<li><a href="#2"><img src="img/23.png" /></a></li>
+					</ul>
+					<ul class="pailie">
+						<li><a href="#2"><img src="img/21.png" /></a></li>
+						<li><a href="#2"><img src="img/21.png" /></a></li>
+						<li><a href="#2"><img src="img/23.png" /></a></li>
+					</ul>
+					
+						</li>
+					</ul>
+					
+					
+					
+					<ul class="uu2 up">
+						<li>
+							
+							<ul class="pailie">
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+					</ul>
+					<ul class="pailie">
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+					</ul>
+					<ul class="pailie">
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+						<li><a href="#2"><img src="img/15..png" /></a></li>
+					</ul>
+					
+						</li>
+					</ul>
+					
+					
+					
+					<ul class="uu3 up">
+						<li>
+							
+							<ul class="pailie">
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+					</ul>
+					<ul class="pailie">
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+					</ul>
+					<ul class="pailie">
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+						<li><a href="#2"><img src="img/22.png" /></a></li>
+					</ul>
+					
+						</li>
+					</ul>
+					
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		
+		
+		<div class="tu3 clearfix">
+			<div><img src="img/27.png" /></div>
+			<div class="lianxing">
+			<dl>
+				<dt><img src="img/28.png" />
+				<div class="dask">
+							<a href="people.html">长方形脸</a>
+							
+						</div>
+				</dt>
+				<!--<dd>长方形脸</dd>-->
+			</dl>
+			<dl>
+				<dt><img src="img/29.png" /><div class="dask">
+							<a href="people.html">锥形脸型</a>
+							
+						</div></dt>
+				<!--<dd>锥形脸型</dd>-->
+			</dl>
+			<dl>
+				<dt><img src="img/30.png" /><div class="dask">
+							<a href="people.html">方形脸型</a>
+							
+						</div></dt>
+				<!--<dd>方形脸型</dd>-->
+			</dl>
+			<dl>
+				<dt><img src="img/31.png" /><div class="dask">
+							<a href="people.html">心形脸型</a>
+							
+						</div></dt>
+			<!--	<dd>心形脸型</dd>-->
+			</dl>
+			<dl>
+				<dt><img src="img/32.png" /><div class="dask">
+							<a href="people.html">椭圆形脸</a>
+							
+						</div></dt>
+				<!--<dd>椭圆形脸</dd>-->
+			</dl>
+			<dl>
+				<dt><img src="img/33.png" /><div class="dask">
+							<a href="people.html">圆形脸型</a>
+							
+						</div></dt>
+				<!--<dd>圆形脸型</dd>-->
+			</dl>
+			</div>
+		</div>
+		
+		<div class="tu4">
+		<div class="tu44">
+			
+			<a href="#2">Shop Now</a>
+		</div>
+	    </div>
+		
+		
+		<div class="tu5">
+		<!--	<img style="position: relative;width: 100%;" class="fenbianlv" src="img/35.png" />-->
+			
+			
+		<div  id="wrap" class="wrapper">
+	<ul>
+		<li>
+			<a href="#" class="a1">
+				<img src="img/36.png"/>
+				<div class ="divA">
+					<p class="p1">ＣＡＲＢＯＮ　ＦＩＢＥＲ</p>
+					<p class="p2">碳纤维材质的发展历程</p>
+					<p class="p3">¥<span>333</span>起</p>
+				</div>
+			</a>
+			<a href="xiangqing.html" class = "a2">
+					<p class="p4">ＣＡＲＢＯＮ　ＦＩＢＥＲ</p>
+					<p class="p5">碳纤维材质的发展历程</p>
+					<p class="p6">¥<span>333</span>起</p>
+					<p class="p7">ｓｈｏｗ　ｎｏｗ></p>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="a1">
+				<img src="img/37.png"/>
+				<div class ="divA">
+					<p class="p1">ＴＩＴＡＮＩＵＭ　ＬＩＮＥ</p>
+					<p class="p2">超轻钛架系列，钛然自若 商务典范</p>
+					<p class="p3">¥<span>455</span>起</p>
+				</div>
+			</a>
+			<a href="xiangqing.html" class = "a2">
+					<p class="p4">ＴＩＴＡＮＩＵＭ　ＬＩＮＥ</p>
+					<p class="p5">超轻钛架系列，钛然自若 商务典范！</p>
+					<p class="p6">¥<span>455</span>起</p>
+					<p class="p7">ｓｈｏｗ　ｎｏｗ></p>
+			</a>
+		</li>
+		<li>
+			<a href="xiangqing.html" class="a1">
+				<img src="img/38.png"/>
+				<div class ="divA">
+					<p class="p1">ＮＥＷ　ＡＲＲＩＶＡＬ</p>
+					<p class="p2">国际大牌儿，十足明星范儿</p>
+					<p class="p3">¥<span>399</span>起</p>
+				</div>
+			</a>
+			<a href="xiangqing.html" class = "a2">
+					<p class="p4">NEW　ＡＲＲＩＶＡＬ</p>
+					<p class="p5">国际大牌儿，十足明星范儿</p>
+					<p class="p6">¥<span>399</span>起</p>
+					<p class="p7">ｓｈｏｗ　ｎｏｗ></p>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="a1">
+				<img src="img/39.png"/>
+				<div class ="divA">
+					<p class="p1">ＣＩＴＹ　ＳＴＹＬＥ</p>
+					<p class="p2">炎炎夏日　不在炎热</p>
+					<p class="p3">¥<span>499</span>起</p>
+				</div>
+			</a>
+			<a href="xiangqing.html" class = "a2">
+					<p class="p4">ＣＩＴＹ　ＳＴＹＬＥ</p>
+					<p class="p5">炎炎夏日　不在炎热</p>
+					<p class="p6">¥<span>499</span>起</p>
+					<p class="p7">ｓｈｏｗ　ｎｏｗ></p>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="a1">
+				<img src="img/40.png"/>
+				<div class ="divA">
+					<p class="p1">ＭＵＬＴＩＦＯＣＡＬ</p>
+					<p class="p2">高端多焦镜定制专家，看近，看远，随性所为</p>
+					<p class="p3">¥<span>499</span>起</p>
+				</div>
+			</a>
+			<a href="xiangqing.html" class = "a2">
+					<p class="p4">ＭＵＬＴＩＦＯＣＡＬ</p>
+					<p class="p5">高端多焦镜定制专家，看近，看远，随性所为</p>
+					<p class="p6">¥<span>499</span>起</p>
+					<p class="p7">ｓｈｏｗ　ｎｏｗ></p>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="a1">
+				<img src="img/41.png"/>
+				<div class ="divA">
+					<p class="p1">ＰＬＡＴＥ　ＧＬＡＳＳＥＳ</p>
+					<p class="p2">时尚板材镜架　超薄板材</p>
+					<p class="p3">¥<span>299</span>起</p>
+				</div>
+			</a>
+			<a href="xiangqing.html" class = "a2">
+					<p class="p4">ＰＬＡＴＥ　ＧＬＡＳＳＥＳ</p>
+					<p class="p5">时尚板材镜架　超薄板材</p>
+					<p class="p6">¥<span>299</span>起</p>
+					<p class="p7">ｓｈｏｗ　ｎｏｗ></p>
+			</a>
+		</li>
+	</ul>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>-->
+<script type="text/javascript">
+$('li').mouseenter(function(){
+	$(this).find('.divA').stop().animate({bottom:'-66px'});
+	$(this).find('.a2').css({left:'0'})
+	$(this).children('.a2').find('.p4').css({left:'0'})
+	$(this).children('.a2').find('.p5').css({left:'0'})
+	$(this).children('.a2').find('.p6').css({transform:'scale(1)'})
+	$(this).children('.a2').find('.p7').css({bottom:'25px'})
+})
+$('li').mouseleave(function(){
+	$(this).find('.divA').stop().animate({bottom:'0px'});
+	$(this).find('.a2').css({left:-$(this).width()})
+	$(this).children('.a2').find('.p4').css({left:-$(this).width()})
+	$(this).children('.a2').find('.p5').css({left:-$(this).width()})
+	$(this).children('.a2').find('.p6').css({transform:'scale(1.3)'})
+	$(this).children('.a2').find('.p7').css({bottom:'-50px'})
+})
+</script>
+
+	
+			
+			
+			
+			
+			
+			
+			
+			
+			<!--<div class="huan wrapper">
+				<ul class="clearfix">
+					<li><a href="#2"><img src="img/36.png"/></a></li>
+					<li><a href="#2"><img src="img/37.png"/></a></li>
+					<li><a href="#2"><img src="img/38.png"/></a></li>
+				</ul>
+				<ul>
+					<li><a href="#2"><img src="img/39.png"/></a></li>
+					<li><a href="#2"><img src="img/40.png"/></a></li>
+					<li><a href="#2"><img src="img/41.png"/></a></li>
+				</ul>
+			</div>-->
+		</div>
+		
+		
+		<div class="tu6 wrapper clearfix">
+			<img class="zz" src="img/42.png" />
+			<form style="position: relative;">
+				<img src="img/43.png" />
+				<input type="text" value=" your name:" />
+				<input type="text" value=" your phone:"/>
+				<textarea value="Message"></textarea>
+				<img class="send" src="img/50.png" />
+				<img style="display: none;position: absolute;bottom: 0px;right: 258px;" class="hhh" src="img/hhh.png" />
+			</form>
+		</div>
+		
+		<!--<div class="tu7 clearfix">
+			<img class="jiao left" src="img/48.png" />
+			<div class="left">
+			<img src="img/44.png" />
+			<img src="img/45.png" />
+			<img src="img/46.png" />
+			<img src="img/47.png" />
+			</div>
+			<img class="jiao left" src="img/49.png" />
+		</div>-->
+		
+		
+		
+			<!--底部轮播-->
+		<style>
+			* { margin: 0; padding: 0;}
+			/*body{ background-color:#1B1B1B}*/
+			#div1{ width: 1000px; height: 100px; position: relative; margin: 100px auto;overflow: hidden;}
+			#div1 ul { width: 1000px; height: 100px; position: relative; }
+			#div1 ul li { height: 100px; float: left; list-style: none; padding-right:20px;}
+			#div1 ul li img { width: 230px; height: 80px; display: inline-block;}
+			a{ color: #B4B4B4; }
+		</style>
+		
+		
+		
+		
+		<div id="div1">
+			<ul>
+				<li><img src="img/44.png" /></li>
+				<li><img src="img/45.png" /></li>
+				<li><img src="img/46.png" /></li>
+				<li><img src="img/47.png" /></li>
+			</ul>			
+		</div>
+		<!--底部轮播-->
+		<!--<script type="text/javascript">
+			window.onload=function(){
+				var odiv = document.getElementById('div1');
+				var oul = odiv.getElementsByTagName('ul')[0];
+				var ali = oul.getElementsByTagName('li');
+				var spa = -2;				
+				oul.innerHTML=oul.innerHTML+oul.innerHTML;
+				oul.style.width=ali[0].offsetWidth*ali.length+'px';
+				function move(){
+					if(oul.offsetLeft<-oul.offsetWidth/2){
+						oul.style.left='0';
+					}
+					if(oul.offsetLeft>0){
+						oul.style.left=-oul.offsetWidth/2+'px'
+					}
+					oul.style.left=oul.offsetLeft+spa+'px';
+				}
+				var timer = setInterval(move,30)
+				
+				odiv.onmousemove=function(){clearInterval(timer);}
+				odiv.onmouseout=function(){timer = setInterval(move,30)};
+				document.getElementsByTagName('a')[0].onclick = function(){
+					spa=-2;
+				}
+				document.getElementsByTagName('a')[1].onclick = function(){
+					spa=2;
+				}
+			}
+		</script>-->
+		
+		
+	
+		
+		
+		
+		
+		<div class="tu8 wrapper">
+			<div class="left lll">
+			<img src="img/51.png" />
+			<div class="qq">
+				<img src="img/52.png" />
+				<img src="img/53.png" />
+				<img src="img/54.png" />
+				<img src="img/55.png" />
+			</div>
+		
+		</div>
+		<div class="left rrr">
+		<ul>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+		</ul>
+		<ul>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+		</ul>
+		<ul>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+		</ul>
+		<ul>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+		</ul>
+		<ul>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+		</ul>
+		<ul>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+			<li><a href="#2">配眼镜指南</a></li>
+		</ul>
+		</div>
+		</div>
+		
+		
+		
+		
+		
+		           
+	</body>
+	<script type="text/javascript" src="js/indexs.js" ></script>
+</html>

@@ -1,0 +1,23 @@
+@charset "utf-8";
+/* CSS Document */*{ margin:0; padding:0}
+body{ font-size:12px;}
+ul,li{ list-style:none;}
+a{ text-decoration:none;}
+img{ border:none}
+
+
+.up{display: none;}
+.on{display: block;}
+
+.wrapper{width: 1100px;text-align: center;margin: 0 auto;}
+
+.left{ float:left}
+.right{ float:right;}
+.clearfix:after{content:""; display:block; clear:both; height:0; line-height:0; visibility:hidden;}
+.clearfix{zoom:1;}/*解决ie6的兼容性问题*/
+
+
+.denglu{float: right; font-weight: bold;margin-top: 20px;margin-right: 10px;z-index: 9999999;}
+.denglu p{float: left;}
+.denglu .sousuo{width: 204px;height: 27px;float:left;margin-top: -4px;margin-left: 52px;}
+.denglu img{display: block; float:right;margin-top: -6px;}

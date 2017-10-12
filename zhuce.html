@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<link rel="stylesheet" href="css/zhuce.css" />
+		<link rel="stylesheet" href="css/login.css" />
+	
+	</head>
+	<body>
+		
+		
+		<div class="ff">
+			<h1 style="color: white;">WELCOME</h1>
+		<div class="left"><img class="llll" src="img/129.png"/></div>
+		<div class="right">
+			
+			<form class="formList" name="regForm" method="post" action="">
+					<p>
+						<label>昵称：</label>
+						<input class="longTxt" type="text" name="nick" />
+						<span id="nick_msg"></span>
+					</p>
+					<p class="count"><label></label><b id="count">0个字符</b></p>
+					<p>
+						<label>密码：</label>
+						<input class="longTxt" type="password" name="password" />
+						<span id="pw1_msg"></span>
+					</p>
+					<p class="password">
+						<span>密码强度：</span>
+						<span id="levBox">
+	                	<span id="lev1" class="on">弱</span>
+						<span id="lev2">中</span>
+						<span id="lev3">强</span>
+						</span>
+					</p>
+					<p>
+						<label>确认密码：</label>
+						<input class="longTxt" type="password" name="password" />
+						<span id="pw2_msg"></span>
+					</p>
+					
+					<!--<p><input class="btn" type="button" onclick="javascript:location='index.html'" value="注册"/></p>-->
+					<div id="denglu">
+				<input style="" type="button" value="LOGIN" name="denglu" onclick="sub()" />
+			</div>
+				</form>
+		</div>
+		
+		
+		<div class="dididi" >
+			<ul>
+				<li><a href="#2">会员中心</a></li>
+				<li style="cursor: pointer;"><a href="index.html">返回主页</a></li>
+			</ul>
+		</div>
+	
+			<script src="js/zhuce.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

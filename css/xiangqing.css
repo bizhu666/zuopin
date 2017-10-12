@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */*{ margin:0; padding:0}
+body{ font-size:12px;}
+ul,li{ list-style:none;}
+a{ text-decoration:none;}
+img{ border:none}
+
+.left{ float:left}
+.right{ float:right;}
+.clearfix:after{content:""; display:block; clear:both; height:0; line-height:0; visibility:hidden;}
+.clearfix{zoom:1;}/*解决ie6的兼容性问题*/
+
+.zu{float: left;font-weight: bold;top: 20px;right: 10px;z-index: 9999999;margin-left: 88px;margin-top: -12px;}
+.zu p{float: left;}
+.denglu{float: right;/* position: absolute; */ font-weight: bold;top: 20px;right: 10px;z-index: 9999999;}
+.denglu p{float: left;}
+
+.tiao{height: 13px;background:yellow;margin-top: 53px;}
+
+#rrr{margin-left: 44px;margin-top: 24px;}
+#rrr .p1{font-size: 20px;font-weight: bold;}
+#rrr .p2{font-size: 15px;color: crimson; margin: 10px 0 0 8px;}
+
+.kuai{background:rgba(246, 215, 215, 0.5);height: 182px;width: 607px;margin-top: 20px;font-size: 14px;color: #6B6B6B;padding: 20px 0 0 20px;}
+.kuai p{margin-bottom: 12px;}
+.kuai .p4{margin-top: 24px;}
+.zy p{float: left;margin-top: 10px;}
+.zy .p7{margin-right: 341px;}
+.yunfei{margin-top: 10px;margin-left: 10px;font-size: 14px;color: #6B6B6B;}
+.ttu{margin: 18px 0 0 85px;}
+.tttu{margin: 18px 0 82px 67px;}
+#div1{margin-bottom: 30px;}
+.didid{margin-top: 30px;}
+
+
+.didid{bottom: 0px;height: 30px;width:100%;background: yellow;line-height: 30px;margin-top: 604px;}
+			.didid ul{width:132px;margin: 0 auto;}
+			.didid ul li{float: left;margin-right: 10px;}
+			
+			.didid ul li a{color: black;}
+<hr style="border:1px dashed #000; height:1px">

@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */*{ margin:0; padding:0}
+body{ font-size:12px;}
+ul,li{ list-style:none;}
+a{ text-decoration:none;}
+img{ border:none}
+
+
+.up{display: none;}
+.on{display: block;}
+
+.wrapper{width: 1100px;text-align: center;margin: 0 auto;}
+
+.left{ float:left}
+.right{ float:right;}
+.clearfix:after{content:""; display:block; clear:both; height:0; line-height:0; visibility:hidden;}
+.clearfix{zoom:1;}/*解决ie6的兼容性问题*/
+
+#rtt {
+	width: 35px;
+	height: 50px;
+	background:url(../images/index/-4.jpg)
+	background-size: cover;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	border-radius: 5px;
+	z-index: 1000;
+	display: none;
+}
+.denglu{float: right; font-weight: bold;margin-top: 20px;margin-right: 10px;z-index: 9999999;}
+.denglu p{float: left;}
+.denglu .sousuo{width: 204px;height: 27px;float:left;margin-top: -4px;margin-left: 52px;}
+.denglu img{display: block; float:right;margin-top: -6px;}
+
+.banner img{width: 100%;}
+.navs{position: absolute;top: 303px;left: 168px;}
+.navs li{margin-bottom: 12px;}
+.navs .aa{font-weight: bold;font-size: 16px;color: black;}
+.navs .aa:hover{color: palevioletred;}
+#nav{font-size: 14px;color: white;z-index: 99999;}
+
+
+.lllll a{color: white;}
+.lllll a:hover{ color: palevioletred;font-weight: bold;}
+.lllll{width: 800px;height:400px;display: none;background:#C35F6B; background: rgba(0,0,0,0.3); z-index: 999999;}
+.lllll{position: absolute; z-index: 99999;top: -11px;left: 130px;margin-bottom:30px;}
+.llll{position: relative;}
+/*#nav ul{margin-left: 20px;}*/
+
+
+.lllll ul{width: 500px;/*margin-left: 30px;*//* border-bottom: #A9A9A9 1px dashed;margin-bottom:30px;*/}
+.lllll li{float: left;margin-right: 13px;margin-left: 24px;margin-bottom:15px;height: 30px;line-height: 30px;}
+
+
+.chong{text-align: center;margin-top: 50px;}
+
+
+.words{width:700px;height: 150px;margin: 16px auto;}
+.words li{margin-bottom: 15px;}
+.words a{color: black;}
+
+
+
+.yuantu{text-align: center;}
+
+
+.liebiao{ width: 1000px; margin: 48px auto;}
+.liebiao ul li{float: left; margin-bottom: 50px;}
+.liebiao ul .mg{ margin-right: 92px;}
+
+
+#tab3 div{float: left;}
+#tab3{margin: 0 auto; width: 40px;}
+
+
+#tab5 div{float: left;}
+#tab5{margin: 0 auto; width: 40px;}
+
+.matter{width: 698px; margin: 30px auto;margin-top: 30px;}
+.matter img{margin-top: 47px;}
+
+
+.tu8 .lll{margin-top: 30px;}
+.tu8 .lll div{margin-left: 16px;}
+.tu8 .rrr ul{float: left;margin-top: 129px;margin-left: 63px;}
+
+.tu8 .rrr ul li a{font-size: 14px;color: darkgray;}
+
+
+.tu8 .qq img{transition: transform 2s; -webkit-transition: transform 2s;display: inline-block; overflow: hidden;}
+.tu8 .qq img:hover{transform: scale(1.5); -webkit-transform: scale(1.3);}
+

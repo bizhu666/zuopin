@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>详情</title>
+			<style type="text/css">
+#ShowPictureBox { width: 319px;
+height: 405px;overflow:hidden;
+margin-left: 62px; }
+</style>
+
+		<link rel="stylesheet" href="css/zhuce.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/xiangqing.css" />
+		
+		
+		
+	
+<script type="text/javascript" src="js/jquery-1.12.4.min.js" ></script>
+
+<script type="text/javascript" src="js/jquery.JNMagnifier.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+        $("#ShowPictureBox").JNMagnifier({
+            renderTo:"#ShowBigPictureBox"
+        });
+});
+</script>
+	</head>
+	<body>
+	
+		<div class="ff">
+			<h1 style="color: white;">WELCOME</h1>
+		</div>
+		<div class="zu">
+			<div style="float: left;margin-top: -10px;"><img src="img/15.png" /></div>
+			<p>欢迎来到loho</p>
+			
+		</div>
+		<div style="margin-top: -12px;" class="denglu">
+			
+			<p>WELCOME  LOHO !&nbsp; &nbsp; &nbsp;</p>
+			<p style=" cursor:pointer" class="old"> <a href="login.html"> 登录  &nbsp; - &nbsp;</a></p>
+			<p style=" cursor:pointer" class="old1"><a href="zhuce.html">注册  &nbsp; &nbsp;</a></p>
+			<p>收藏LOHO &nbsp; &nbsp; &nbsp; </p>
+			<p>MY  LOHO  我的订单&nbsp; &nbsp; &nbsp;</p>
+			<p>购物车（0）&nbsp; &nbsp; &nbsp;</p>
+			<p>手机版     400-8871920(09:00-23:00)</p>
+	</div>  
+	<div class="tiao">
+		
+	</div>
+	
+	
+	<div>
+	
+	    <div id="ShowPictureBox" class="left">
+	    
+<img style="margin:30px 30px 0 30px" src="img/39.png" width="340" height="363">
+	    </div>
+	    <div id="ShowBigPictureBox" style=" position:absolute; top:272px; left:397px; overflow:hidden; display:none; border:1px solid #ccc; padding:5px; background-repeat:no-repeat; background-color:#fff; width:340px; height:363px;">
+	    
+	    </div>
+	    
+	    <div id="rrr" class="left">
+	    	<p class="p1">	么么镜复古眼镜框中金框yellows plus同款judy镜架眼镜架近视眼镜</p>
+            <p class="p2">潮人必备yellowsplus judy</p>
+            
+            <div class="kuai">
+            	<p class="p3">loho实物商品通用</p>
+            	<p class="p4">价格&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style=" text-decoration: line-through">1332</span>￥</p>
+            	<p class="p5">促销价 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 25px;font-weight: bold;color: #A90000;">￥388.0</span>&nbsp;&nbsp;&nbsp;&nbsp; <img style="padding-top: 3px;" src="img/W`F(S_4UYUPLF2.png" /> </p>
+            	<div class="zy"> <p class="p6">本店活动&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p><p style="color: orangered;" class="p7">满一件       包邮</p> <p style="color: orangered;">更多优惠  ></p> </div>
+            </div>
+            <div class="yunfei"><span>运费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span> 湖北武汉至 衡水 快递: 10.00 EMS: 23.00</span></div>
+	    	<div class="ttu"> <img style="margin-right: 70px;cursor: pointer;" src="img/564.png" /> <img style="cursor: pointer;" src="img/546.png" /></div>
+	    </div>
+	</div>
+	<div class="tttu left"> <img src="img/090.png" /> </div>
+	
+	
+		<!--底部轮播-->
+		<style>
+			* { margin: 0; padding: 0;}
+			/*body{ background-color:#1B1B1B}*/
+			#div1{ width: 957px; height: 100px; position: absolute; margin: 100px auto;overflow: hidden;margin: 416px 0 31px 93px;}
+			#div1 ul { width: 1000px; height: 100px; position: relative; }
+			#div1 ul li { height: 100px; float: left; list-style: none; padding-right:20px;}
+			#div1 ul li img { width: 230px; height: 80px; display: inline-block;}
+			a{ color: #B4B4B4; }
+		</style>
+		
+		
+		
+		
+		<div id="div1">
+			<ul>
+				<li><img src="img/44.png" /></li>
+				<li><img src="img/45.png" /></li>
+				<li><img src="img/46.png" /></li>
+				<li><img src="img/47.png" /></li>
+			</ul>			
+		</div>
+		
+	<script type="text/javascript">
+			window.onload=function(){
+				var odiv = document.getElementById('div1');
+				var oul = odiv.getElementsByTagName('ul')[0];
+				var ali = oul.getElementsByTagName('li');
+				var spa = -2;				
+				oul.innerHTML=oul.innerHTML+oul.innerHTML;
+				oul.style.width=ali[0].offsetWidth*ali.length+'px';
+				function move(){
+					if(oul.offsetLeft<-oul.offsetWidth/2){
+						oul.style.left='0';
+					}
+					if(oul.offsetLeft>0){
+						oul.style.left=-oul.offsetWidth/2+'px'
+					}
+					oul.style.left=oul.offsetLeft+spa+'px';
+				}
+				var timer = setInterval(move,30)
+				
+				odiv.onmousemove=function(){clearInterval(timer);}
+				odiv.onmouseout=function(){timer = setInterval(move,30)};
+				document.getElementsByTagName('a')[0].onclick = function(){
+					spa=-2;
+				}
+				document.getElementsByTagName('a')[1].onclick = function(){
+					spa=2;
+				}
+			}
+		</script>
+		
+		<div class="didid" >
+			<ul>
+				<li><a href="#2">会员中心</a></li>
+				<li><a href="index.html">返回主页</a></li>
+			</ul>
+		</div>
+		
+	</body>
+</html>
